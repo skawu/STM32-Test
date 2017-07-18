@@ -1,0 +1,9 @@
+---- USART_Mode Matches (8 in 3 files) ----
+stm32f10x_usart.c (G:\0_0stm32\STM32_Template\Libraries\FWlib\src):  assert_param(IS_USART_MODE(USART_InitStruct->USART_Mode));
+stm32f10x_usart.c (G:\0_0stm32\STM32_Template\Libraries\FWlib\src):  /* Set TE and RE bits according to USART_Mode value */
+stm32f10x_usart.c (G:\0_0stm32\STM32_Template\Libraries\FWlib\src):            USART_InitStruct->USART_Mode;
+stm32f10x_usart.c (G:\0_0stm32\STM32_Template\Libraries\FWlib\src):  USART_InitStruct->USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+stm32f10x_usart.h (G:\0_0stm32\STM32_Template\Libraries\FWlib\inc):  uint16_t USART_Mode;                /*!< Specifies wether the Receive or Transmit mode is enabled or disabled.
+stm32f10x_usart.h (G:\0_0stm32\STM32_Template\Libraries\FWlib\inc):                                           This parameter can be a value of @ref USART_Mode */
+stm32f10x_usart.h (G:\0_0stm32\STM32_Template\Libraries\FWlib\inc):/** @defgroup USART_Mode 
+uart.c (G:\0_0stm32\STM32_Template\User\uart):	USART_InitStructure.USART_Mode = ;
