@@ -1,0 +1,17 @@
+#skwau ignore file list
+
+*.IAB
+*.IAD
+*.IMB
+*.IMD
+*.PFI
+*.PO
+*.PR
+*.PRI
+*.PS
+*.SearchResults
+*.WK3
+*.uvprojx
+*.uvoptx
+*.uvguix.skawu
+
