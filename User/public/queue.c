@@ -86,7 +86,7 @@ void reset_queue_data_ptr(void)
 
 bool is_empty_queue(void)
 {
-    if(0 ==== get_queue_data_length())
+    if(0 == get_queue_data_length())
     {
         return true;  
     }
