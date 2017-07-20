@@ -28,8 +28,19 @@
 #include "public.h"
 #include "timer.h"
 #include "gpio.h"
+#include "uart.h"
 
 int TIM2_Update_flag = 0;
+char usart_data_main[] = {'A','B'};
+
+
+void delay(unsigned int temp)
+	{
+	int a,j;
+	for(a=0;a<temp;a++)
+		for(j=0;j<1000;j++);
+	}
+
 
 /**
   * @brief  Main program.
@@ -42,6 +53,12 @@ int main(void)
     lcd_init();
     time2_config();
     gpio_config();
+    UART3_config();
+
+	delay(10000);
+
+
+    UART3_SendData(usart_data_main,sizeof(usart_data_main));
 
     //lcd_clear_screen(RED);
     while(1)

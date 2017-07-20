@@ -18,6 +18,9 @@ int WritePtr = 0;   //写指针
 int ReadPtr  = 0;   //读指针
 int DataLength = 0;
 
+int is_empty_queue(void);
+int is_empty_queue(void);
+
 void init_queue(void)
 {
     memset(USART_TX_BUF, 0, sizeof(USART_TX_BUF));
@@ -30,24 +33,24 @@ void init_queue(void)
 
 void put_queue_data(unsigned char c)
 {
-    if(!(is_full_queue()))
-   {
+    if(0 == is_full_queue())
+    {
         USART_RX_BUF[WritePtr] = c;
         WritePtr++;
-        
+
         if(WritePtr >= USART_RX_BUF_SIZE)   //保留数组最后一位不使用，防止数组越界
         {
             WritePtr = 0;
         }
-   }
+    }
 }
 
 unsigned char get_queue_data(void)
-{    
+{
     if(!(is_empty_queue()))
     {
         unsigned char c;
-        
+
         c = USART_RX_BUF[ReadPtr];
         ReadPtr++;
 
@@ -55,17 +58,19 @@ unsigned char get_queue_data(void)
         {
             ReadPtr = 0;
         }
+
         return c;
     }
     else
     {
         return NULL;
-    }  
+    }
 }
 
 int get_queue_data_length(void)
 {
     int c = 0;
+
     if(WritePtr >= ReadPtr)
     {
         c = WritePtr - ReadPtr;
@@ -84,11 +89,11 @@ void reset_queue_data_ptr(void)
     ReadPtr  = 0;
 }
 
-bool is_empty_queue(void)
+int is_empty_queue(void)
 {
     if(0 == get_queue_data_length())
     {
-        return true;  
+        return true;
     }
     else
     {
@@ -96,11 +101,11 @@ bool is_empty_queue(void)
     }
 }
 
-bool is_full_queue(void)
+int is_full_queue(void)
 {
     if(USART_RX_BUF_SIZE == get_queue_data_length())
     {
-        return ture;
+        return true;
     }
     else
     {

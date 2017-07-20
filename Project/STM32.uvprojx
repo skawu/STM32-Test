@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\lcd;..\User\timer;..\User\gpio;..\User\uart</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\FWlib\inc;..\User;..\User\lcd;..\User\timer;..\User\gpio;..\User\uart;..\User\public</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -617,6 +617,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\uart\uart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Public</GroupName>
+          <Files>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\public\queue.c</FilePath>
             </File>
           </Files>
         </Group>

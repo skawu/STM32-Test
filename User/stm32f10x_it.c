@@ -202,14 +202,15 @@ void EXTI0_IRQHandler(void)
   * @param  None
   * @retval None
   */
-void UART3_IRQHandler(void)
+void USART3_IRQHandler(void)
 {
-	unsigned char c = 0;
-	if(USART_GetITStatus(USART_TypeDef * USARTx,uint16_t USART_IT))
-	{
-		c = USART_ReceiveData(USART3);
-		put_queue_data(c);
-	}
+    unsigned char c = 0;
+
+    if(USART_GetITStatus(USART3,USART_IT_RXNE))
+    {
+        c = USART_ReceiveData(USART3);
+        put_queue_data(c);
+    }
 }
 
 
