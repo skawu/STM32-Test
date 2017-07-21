@@ -2,6 +2,7 @@
 #define __LCD_H__
 #include "stm32f10x.h"
 
+
 /* TFT½á¹¹Ìå */
 typedef struct
 {
@@ -35,6 +36,8 @@ void lcd_set_window(u16 xStart, u16 yStart, u16 xEnd, u16 yEnd);
 void lcd_clear_screen(u16 color);
 void lcd_wrcmd(u16 cmd);
 void lcd_wrdat(u16 dat);
+void GUI_Show12ASCII(uint16_t x, uint16_t y, uint8_t *p,
+                     uint16_t wordColor, uint16_t backColor);
 
 
 

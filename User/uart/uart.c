@@ -52,15 +52,17 @@ static void NVIC_USART3_init(void)
 
 void UART3_config(void)
 {
-    uart_gpio_init();
     uart_init();
+    uart_gpio_init();
     NVIC_USART3_init();
 }
 
 void USART3_SendChar(char c)
 {
+
     USART_SendData(USART3, c);
-    while(USART_GetFlagStatus(USART3, USART_FLAG_TC));
+
+    while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET);
 }
 
 char putchar(char c)
@@ -69,8 +71,10 @@ char putchar(char c)
     return c;
 }
 
-void UART3_SendStr(char *str)
+void USART3_SendStr(char *str)
 {
+    USART_ClearFlag(USART3,USART_FLAG_TC);
+
     while(0 != *str)
     {
         USART3_SendChar(*str);

@@ -1,4 +1,6 @@
 #include "lcd.h"
+#include "asciicode.h"
+
 
 /*
  *	LCD GPIO init
@@ -260,4 +262,51 @@ void lcd_clear_screen(u16 color)
         }
     }
 }
+
+
+void GUI_Show12ASCII(uint16_t x, uint16_t y, uint8_t *p,
+                     uint16_t wordColor, uint16_t backColor)
+{
+    uint8_t i, wordByte, wordNum;
+    uint16_t color;
+
+    while(*p != '\0')
+    {
+
+        wordNum = *p - 32;
+
+        lcd_set_window(x, y, x+7, y+15);
+
+        for (wordByte=0; wordByte<16; wordByte++)
+        {
+            color = ASCII8x16[wordNum][wordByte];
+
+            for (i=0; i<8; i++)
+            {
+                if ((color&0x80) == 0x80)
+                {
+                    lcd_wrdat(wordColor);
+                }
+                else
+                {
+                    lcd_wrdat(backColor);
+                }
+
+                color <<= 1;
+            }
+        }
+
+        p++;
+
+
+        x += 8;
+
+        if(x > 233)   //TFT_XMAX -8
+        {
+            x = 0;
+            y += 16;
+        }
+    }
+}
+
 

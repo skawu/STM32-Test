@@ -31,15 +31,17 @@
 #include "uart.h"
 
 int TIM2_Update_flag = 0;
-char usart_data_main[] = {'A','B'};
+char usart_data_main[] = "芳芳是个小傻子 \n";
+int TIM2_Update_flag_flag = 0;
 
 
 void delay(unsigned int temp)
-	{
-	int a,j;
-	for(a=0;a<temp;a++)
-		for(j=0;j<1000;j++);
-	}
+{
+    int a,j;
+
+    for(a=0; a<temp; a++)
+        for(j=0; j<1000; j++);
+}
 
 
 /**
@@ -55,25 +57,52 @@ int main(void)
     gpio_config();
     UART3_config();
 
-	delay(10000);
+    delay(10000);
 
 
-    UART3_SendData(usart_data_main,sizeof(usart_data_main));
+    USART3_SendStr(usart_data_main);
 
-    //lcd_clear_screen(RED);
+    //lcd_clear_screen(BLACK);
+    //GUI_Show12ASCII(80,160,"Helllo,FangFang!",WHITE,BLACK);
+
     while(1)
     {
-        if(1 == TIM2_Update_flag)
+
+        
+        int TIM2_Update_flag_count = 0;
+
+        if(TIM2_Update_flag_flag != TIM2_Update_flag)
         {
-            lcd_clear_screen(YELLOW);
-        }
-        else if(2 == TIM2_Update_flag)
-        {
-            lcd_clear_screen(BLACK);
+            TIM2_Update_flag_flag = TIM2_Update_flag;
+            TIM2_Update_flag_count = 1;
         }
         else
         {
+            TIM2_Update_flag_count = 0;
+        }
+
+        if(1 == TIM2_Update_flag && TIM2_Update_flag_count)
+        {
+            lcd_clear_screen(YELLOW);
+            GUI_Show12ASCII(60,200,"Helllo,FangFang!",BLACK,YELLOW);
+        }
+        else if(2 == TIM2_Update_flag && TIM2_Update_flag_count)
+        {
+            lcd_clear_screen(BLACK);
+            GUI_Show12ASCII(60,200,"Helllo,FangFang!",WHITE,BLACK);
+        }
+        else if(TIM2_Update_flag_count)
+        {
             lcd_clear_screen(BLUE);
+            GUI_Show12ASCII(60,200,"Helllo,FangFang!",WHITE,BLUE);
+        }
+
+
+        if(0xAA == get_queue_data())
+        {
+            lcd_clear_screen(RED);
+            GUI_Show12ASCII(60,200,"Helllo,FangFang!",WHITE,RED);
+            delay(10000);
         }
     }
 }

@@ -5,8 +5,8 @@
 
 extern void UART3_config(void);
 extern void USART3_SendChar(char c);
-extern void UART3_SendStr(char *str);
-extern char putchar(char c);
+extern void USART3_SendStr(char *str);
+//extern char putchar(char c);
 
 #endif
 
