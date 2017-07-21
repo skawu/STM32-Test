@@ -1,4 +1,4 @@
 #skwau ignore file list
 
-/Sourceinsight/*
-/Project/*
+Sourceinsight/
+Project/
