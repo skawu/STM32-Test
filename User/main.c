@@ -55,12 +55,12 @@ int main(void)
     lcd_init();
     time2_config();
     gpio_config();
-    UART3_config();
+    UART_config(USART3);
 
     delay(10000);
 
 
-    USART3_SendStr(usart_data_main);
+    USART_SendStr(USART3,usart_data_main);
 
     //lcd_clear_screen(BLACK);
     //GUI_Show12ASCII(80,160,"Helllo,FangFang!",WHITE,BLACK);
@@ -68,7 +68,7 @@ int main(void)
     while(1)
     {
 
-        
+
         int TIM2_Update_flag_count = 0;
 
         if(TIM2_Update_flag_flag != TIM2_Update_flag)
